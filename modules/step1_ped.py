@@ -1,9 +1,16 @@
 from .llm_client import call_llm
 from .docx_utils import read_docx_content, extract_ped_page
 
-def check_ped_compliance(file_path):
+def check_ped_compliance(file_path, ped_file_path=None):
     text, doc = read_docx_content(file_path)
-    ped_specs = extract_ped_page(doc)
+    
+    # Se ped_file_path è fornito, estraiamo il PED da lì, 
+    # altrimenti lo estraiamo dallo stesso file_path.
+    if ped_file_path:
+        _, ped_doc = read_docx_content(ped_file_path)
+        ped_specs = extract_ped_page(ped_doc)
+    else:
+        ped_specs = extract_ped_page(doc)
     
     prompt = f"""
     Analizza il seguente ARTICOLO basandoti sulle SPECIFICHE PED fornite.

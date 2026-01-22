@@ -47,7 +47,7 @@ def main():
     print(f"File corretto salvato in: {fixed_docx_path}")
     
     print("\n--- STEP 4: Controllo PED Finale ---")
-    final_result = final_ped_check(fixed_docx_path)
+    final_result = final_ped_check(fixed_docx_path, input_path)
     
     if "OK" in final_result and len(final_result) < 10:
         print("✅ PROCESSO COMPLETATO CON SUCCESSO. Il file fixed rispetta il PED.")
